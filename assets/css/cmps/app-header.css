@@ -7,6 +7,12 @@ header {
     display: flex;
     justify-content: space-between;
     padding: 20px 0;
+    background-color: var(--gmail-header-bgclr);
+}
+
+.header-menu {
+    width: 25px;
+    height: 25px;
 }
 
 nav a {
