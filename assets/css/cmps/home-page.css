@@ -1,0 +1,11 @@
+.home {
+    margin-block-start: 2em;
+    text-align: center;
+}
+
+.home p {
+    margin: 0 auto;
+    margin-block-start: 1em;
+    font-family: 'bigJohn';
+    width: 500px;
+}
