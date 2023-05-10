@@ -1,0 +1,20 @@
+@font-face {
+    font-family: 'quackey';
+    src: url('../../fonts/Quackey-Regular.otf'); /*format('truetype'); */
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'quilin';
+    src: url('../../fonts/Quilin-Regular.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'bigJohn';
+    src: url('../../fonts/BigJohnPRO-Regular.otf');
+    font-weight: normal;
+    font-style: normal;
+}
