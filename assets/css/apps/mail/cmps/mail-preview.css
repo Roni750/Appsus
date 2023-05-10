@@ -1,0 +1,8 @@
+.mail-preview {
+  display: grid;
+  grid-template-columns: 170px 1fr 50px;
+  padding: 0.6rem;
+  /* font-weight: 700; */
+  box-shadow: inset 0 -1px 0 0 rgb(100 121 143 / 12%);
+  cursor: pointer;
+}
