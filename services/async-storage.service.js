@@ -4,6 +4,8 @@ export const storageService = {
     post,
     put,
     remove,
+    loadFromStorage,
+    saveToStorage
 }
 
 function query(entityType, delay = 500) {
@@ -47,6 +49,16 @@ function remove(entityType, entityId) {
         _save(entityType, entities)
     })
 }
+
+function saveToStorage(key, val) {
+    localStorage.setItem(key, JSON.stringify(val))
+}
+
+function loadFromStorage(key) {
+    var val = localStorage.getItem(key)
+    return JSON.parse(val)
+}
+
 
 // Private functions
 
