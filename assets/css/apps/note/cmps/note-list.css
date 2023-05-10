@@ -1,1 +1,9 @@
  /* note list */
+
+ .note-list {
+     border: solid 3px black;
+ }
+
+ .note-list img {
+    width: 25%;
+ }

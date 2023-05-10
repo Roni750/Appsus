@@ -22,5 +22,7 @@
 @import './cmps/app-header.css';
 @import './cmps/home-page.css';
 @import './cmps/apps-card.css';
+@import 'apps/note/cmps/note-list.css';
+@import 'apps/note/cmps/note-preview.css';
 
 /* @import './apps/mail/cmps/mail-list.css'; */

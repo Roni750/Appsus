@@ -11,6 +11,5 @@ export function MenuModal() {
                 <NavLink to="/note"><img className="keep-logo" src="assets/img/keep-logo.png" /><p>Keep</p></NavLink>
                 </div>
             </div>
-        
     )
 }
