@@ -17,7 +17,7 @@ export function AppHeader() {
       <section className="main-header">
         <Link to="/">
           <div className="logo-container flex align-center">
-            <img className="horse-logo" src="../assets/img/horse-logo.png" />
+            <img className="horse-logo" src="assets/img/horse-logo.png" />
             <h3 className="brand-name">Appsus</h3>
           </div>
         </Link>
