@@ -1,4 +1,5 @@
 const { Link } = ReactRouterDOM
+const {  useNavigate } = ReactRouterDOM
 
 import { NotePreview } from "./note-preview.jsx"
 import { noteService } from "../services/note.service.js"
@@ -19,10 +20,11 @@ export function NoteList({ notes, onRemoveNote, onSelectNote }) {
             {console.log("notes:", notes)}
             {notes.map(note =>
                 <li key={note.id} onClick={() => onSelectNote(note)}>
+                {/* <li key={note.id} onBlur={() => onSelectNote(null)} onClick={() => onSelectNote(note)}> */}
                     <Link to={`/note/${note.id}`}>
-                        <NotePreview onEditNote={onEditNote} note={note} />
+                        <NotePreview onEditNote={onEditNote} note={note} onRemoveNote={onRemoveNote} />
                     </Link>
-                    <button className="remove-btn" onClick={() => onRemoveNote(note.id)}>X</button>
+                    {/* <button className="remove-btn" onClick={() => onRemoveNote(note.id)}>X</button> */}
                 </li>
             )}
         </ul>

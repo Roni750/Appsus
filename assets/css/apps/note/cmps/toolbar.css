@@ -1,0 +1,8 @@
+.toolbar {
+    display: flex;
+    justify-content:space-between;
+    gap: 2em;
+    margin-block-start: .8em;
+    position: inherit;
+    color: #767676;
+}

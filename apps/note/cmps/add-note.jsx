@@ -1,12 +1,30 @@
-const { useState } = React
+const { useState, useEffect } = React
 
 import { noteService } from "../services/note.service.js"
 
 export function NoteAdd({ setNotes, saveNote }) {
+    const [isTitleFocused, setIsTitleFocused] = useState(false)
+    const [isTextFocused, setIsTextFocused] = useState(false)
+    const [isFocused, setIsFocused] = useState(false)
     const [noteToAdd, setNoteToAdd] = useState(noteService.getEmptyNote())
 
+    useEffect(() => {
+        const handleClick = (event) => {
+            if (!isTitleFocused && !isTextFocused) {
+                onSaveNote()
+                setIsFocused(false)
+            }
+        }
+
+        document.addEventListener('click', handleClick)
+
+        return () => {
+            document.removeEventListener('click', handleClick)
+        }
+    }, [isTitleFocused, isTextFocused])
+
     function handleChange({ target }) {
-        // const field = target.name
+        const field = target.name
         const value = target.value
 
         if (value.includes(',')) {
@@ -26,39 +44,34 @@ export function NoteAdd({ setNotes, saveNote }) {
             }
         } else {
             // * If txt input is a regular note
-            const { info: { txt } } = noteToAdd
-            setNoteToAdd(note => ({
-                ...note,
-                info: {
-                    ...note.info,
-                    txt: value
-                }
-            }))
+            setNoteToAdd(note => ({ ...note, info: { ...note.info, [field]: value } }))
         }
     }
 
-    function onSaveNote(ev) {
-        ev.preventDefault()
+    function onSaveNote() {
+        console.log("func called:")
+        // if (noteToAdd.info.txt = "" || " ") return
         saveNote(noteToAdd)
-        console.log("note:", noteToAdd)
+        console.log("noteToAdd:", noteToAdd)
+        setNoteToAdd(noteService.getEmptyNote())
     }
 
     return (
-        <form onSubmit={onSaveNote}>
-            <div className="input-wrapper">
-                <label htmlFor="txt">Add a note:</label>
-                <div className="input-container">
-                    <div className="icon-wrapper">
-                        <i className="fa-solid fa-font icon"></i>
-                        <i className="fa-solid fa-image icon"></i>
-                        <i className="fa-brands fa-youtube icon"></i>
-                        <i className="fa-solid fa-microphone icon"></i>
-                        <i className="fa-solid fa-list-ul icon"></i>
-                    </div>
-                    <input className="input-field" onChange={handleChange} type="text" name="txt" id="txt" />
-                </div>
-                <button className="add-btn">Add</button>
+        <div className="input-wrapper">
+            <div className="inputs-container" onClick={() => setIsFocused(true)}>
+                {isFocused ? <input onFocus={() => setIsTitleFocused(true)} onBlur={() => setIsTitleFocused(false)} className="input-field title" onClick={() => setIsFocused(true)} placeholder="Title" onChange={handleChange} type="text" name="title" id="title" /> : ""}
+                <input className="input-field" placeholder="Take a note..." onChange={handleChange} onFocus={() => setIsTextFocused(true)} onBlur={() => setIsTextFocused(false)} type="text" name="txt" id="txt" />
             </div>
-        </form>
+        </div>
     )
 }
+
+
+// * Icons for choosing type of note
+{/* <div className="icon-wrapper">
+    <i className="fa-solid fa-font icon"></i>
+    <i className="fa-solid fa-image icon"></i>
+    <i className="fa-brands fa-youtube icon"></i>
+    <i className="fa-solid fa-microphone icon"></i>
+    <i className="fa-solid fa-list-ul icon"></i>
+</div> */}

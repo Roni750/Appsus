@@ -1,8 +1,6 @@
-const { useState } = React
+import { Toolbar } from "./toolbar.jsx"
 
-export function NotePreview({ note, onEditNote }) {
-
-  const [isDone, setIsDone] = useState(false)
+export function NotePreview({ note, onEditNote, onRemoveNote }) {
 
   function DynamicCmp({ dynamicNote }) {
     switch (dynamicNote.type) {
@@ -27,8 +25,11 @@ export function NotePreview({ note, onEditNote }) {
 
     return (
       <article className="note-preview">
-        <h1>Note Content:</h1>
-        <div onBlur={handleContentBlur} contentEditable={true} dangerouslySetInnerHTML={{ __html: content }}></div>
+        <h4>{info.title}</h4>
+        <div onBlur={handleContentBlur} contentEditable={true} dangerouslySetInnerHTML={{ __html: content }}>
+        </div>
+        {/* <button className="remove-btn" onClick={() => onRemoveNote(note.id)}>X</button> */}
+        <Toolbar note={note} />
       </article>
     )
   }
@@ -39,34 +40,30 @@ export function NotePreview({ note, onEditNote }) {
       <article className="note-preview">
         <h1>{info.title}</h1>
         <img src={info.url} />
+        {/* <button className="remove-btn" onClick={() => onRemoveNote(note.id)}>X</button> */}
+        <Toolbar note={note} />
+
       </article>
     )
   }
 
   function NoteTodos({ info }) {
-    function toggleDoUndo(isDone) {
-      setIsDone(!isDone)
-      console.log("isDone:", isDone)
-    }
 
     return (
       <article className="note-preview">
-        <h1>Welcome back</h1>
+        <h1>Todo's list:</h1>
         <ul>
           {info.todos.map((todo, idx) => (
             <li key={idx}><p>{todo.txt}</p></li>
           ))}
         </ul>
-        {/* {info.todos.map((todo, idx) => (
-          <li key={idx} onClick={() => toggleDoUndo(isDone)} className={isDone ? 'todo-done' : ''}><p contenteditable="true">{todo.txt}</p></li>
-        ))} */}
+        {/* <button className="remove-btn" onClick={() => onRemoveNote(note.id)}>X</button> */}
+        <Toolbar note={note} />
       </article>
     )
   }
 
   return (
-    <article className="note-preview">
-      <DynamicCmp dynamicNote={note} />
-    </article>
+    <DynamicCmp dynamicNote={note} />
   )
 }
