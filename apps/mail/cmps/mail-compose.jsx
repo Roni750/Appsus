@@ -32,7 +32,9 @@ export function MailCompose({ addMail, onToggleCompose, saveDraft }) {
 
   function onCloseCompose() {
     onToggleCompose()
-    if (isTimePassed) saveDraft(draftMail)
+    if (isTimePassed) {
+      saveDraft(draftMail)
+    }
   }
 
   return (
@@ -70,6 +72,7 @@ export function MailCompose({ addMail, onToggleCompose, saveDraft }) {
           rows="10"
           value={draftMail.body}
           onChange={handleChange}
+          style={{ resize: 'none' }}
         ></textarea>
         <button className="compose-send-btn">Send</button>
       </form>

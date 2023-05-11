@@ -3,7 +3,6 @@
   padding: 0;
   list-style: none;
   width: 100%;
-  padding-right: 20px;
 }
 
 .percent-bar-container {
@@ -40,11 +39,11 @@
   font-size: 0.8rem;
   width: 100%;
   margin: 0;
-  /* padding-left: 4rem; */
   padding: 3px 0 3px 4rem;
   border-top-right-radius: 2rem;
   border-bottom-right-radius: 2rem;
   color: rgb(52, 52, 52);
+  height: 10%;
 }
 
 .folder-list-item:hover {
@@ -72,8 +71,16 @@
   box-shadow: 0 1px 3px 0 rgb(60 64 67 / 30%), 0 4px 8px 3px rgb(60 64 67 / 15%);
 }
 
+.compose-btn .icon {
+}
+
 .side-bar-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+span {
+  position: relative;
+  right: 5px;
 }

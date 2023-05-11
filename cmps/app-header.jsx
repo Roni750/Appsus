@@ -6,10 +6,12 @@ import { MenuModal } from './menu-modal.jsx'
 export function AppHeader() {
   const [isClicked, setIsClicked] = useState(false)
 
-  useEffect(() => {
-    <MenuModal />
-  }, [isClicked])
-
+  const handleCloseModal = () => {
+    if (setIsClicked(!isClicked)) return
+    else {
+      isClicked = !isClicked
+    }
+  }
   return (
     <header>
       <section className="main-header">
@@ -31,7 +33,11 @@ export function AppHeader() {
         </nav>
       </section>
 
-      {isClicked && <MenuModal />}
+      {isClicked && (
+        <div onClick={handleCloseModal}>
+          <MenuModal />
+        </div>
+      )}
     </header>
   )
 }

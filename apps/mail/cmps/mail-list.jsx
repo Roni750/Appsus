@@ -14,7 +14,7 @@ export function MailList({
       <table className="mail-table">
         <MailHeader onSetFilter={onSetFilter} />
         <tbody>
-          {mails.map((mail) => (
+          {mails.reverse().map((mail) => (
             <MailPreview
               mail={mail}
               setStared={setStared}

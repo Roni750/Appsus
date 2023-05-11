@@ -2,7 +2,7 @@ const { useState, useEffect } = React
 
 import { mailService } from '../services/mail.service.js'
 
-export function MailFolderList({ onSetFilter, onToggleCompose, mails }) {
+export function MailSideList({ onSetFilter, onToggleCompose }) {
   const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter())
   const [isStared, setStared] = useState(false)
   const [inboxCount, setInboxCount] = useState(0)
@@ -105,7 +105,7 @@ export function MailFolderList({ onSetFilter, onToggleCompose, mails }) {
       </ul>
       <div class="percent-bar-container">
         <div class="percent-bar" style={{ width: `${readPercentage}` }}>
-          {readPercentage}
+          {readPercentage} used
         </div>
       </div>
     </div>

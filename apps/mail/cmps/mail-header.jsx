@@ -57,7 +57,6 @@ export function MailHeader({ onSetFilter }) {
           </div>
         )}
       </th>
-      <th></th>
     </thead>
   )
 }
