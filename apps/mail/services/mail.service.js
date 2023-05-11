@@ -72,7 +72,7 @@ function query(filterBy) {
 function getReadPercentage() {
   return storageService.query(MAIL_KEY).then((mails) => {
     const newMails = mails.filter((mail) => mail.isRead)
-    return Math.ceil(newMails.length / mails.length)
+    return Math.ceil((newMails.length / mails.length) * 100)
   })
 }
 

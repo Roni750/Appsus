@@ -16,6 +16,7 @@
 
 /* @import './apps/note/views/note-index.css'; */
 @import './apps/mail/views/mail-index.css';
+@import './apps/mail/views/mail-details.css';
 
 /* General Cmps */
 
@@ -32,3 +33,9 @@
 /* Mail App Cmps */
 
 @import './apps/mail/cmps/mail-list.css';
+@import './apps/mail/cmps/mail-side-list.css';
+@import './apps/mail/cmps/mail-details-header.css';
+@import './apps/mail/cmps/mail-header.css';
+@import './apps/mail/cmps/mail-filter.css';
+@import './apps/mail/cmps/mail-preview.css';
+@import './apps/mail/cmps/mail-compose.css';

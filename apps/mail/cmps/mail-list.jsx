@@ -9,9 +9,6 @@ export function MailList({
   setReadMail,
   setToggleRead,
 }) {
-  {
-    console.log(mails)
-  }
   return (
     <section>
       <table className="mail-table">

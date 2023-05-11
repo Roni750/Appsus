@@ -89,24 +89,32 @@ function getDayName(date, locale) {
   return date.toLocaleDateString(locale, { weekday: 'long' })
 }
 
-function getMonthName(date) {
+function _isBeforeToday(date) {
+  const today = new Date()
+
+  today.setHours(0, 0, 0, 0)
+
+  return date > today
+}
+
+function getMonthName(timestamp) {
+  const date = new Date(timestamp)
   const monthNames = [
-    'January',
-    'February',
-    'March',
-    'April',
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
     'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
   ]
   return monthNames[date.getMonth()]
 }
-
 function getFormattedDate(timestamp) {
   const today = new Date()
   const yyyy = today.getFullYear()

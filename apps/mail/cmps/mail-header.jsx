@@ -23,26 +23,35 @@ export function MailHeader({ onSetFilter }) {
         <div className="table-header-btn-container flex">
           <span
             onClick={() => setIsClicked(!isClicked)}
-            className="symbols-pointer read-filter"
+            className="material-symbols-outlined read-filter"
           >
             list
           </span>
           <span
             onClick={() => window.location.reload()}
-            className="symbols-pointer refresh"
+            className="material-symbols-outlined refresh"
           >
             refresh
           </span>
         </div>
         {isClicked && (
           <div className="filter-modal">
-            <p className="filter-option" onClick={() => handleChange(null)}>
+            <p
+              className="read-filter-option"
+              onClick={() => handleChange(null)}
+            >
               All
             </p>
-            <p className="filter-option" onClick={() => handleChange(false)}>
+            <p
+              className="read-filter-option"
+              onClick={() => handleChange(false)}
+            >
               Read
             </p>
-            <p className="filter-option" onClick={() => handleChange(true)}>
+            <p
+              className="read-filter-option"
+              onClick={() => handleChange(true)}
+            >
               Unread
             </p>
           </div>

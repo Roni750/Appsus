@@ -1,0 +1,38 @@
+.mail-filter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.filter-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #eaf1fb;
+  width: min-content;
+  margin: 0.5rem auto;
+  padding: 0 0.5rem;
+  border-radius: 10px;
+}
+
+.input-container {
+  display: inline-block;
+}
+
+.search-input {
+  background-color: #eaf1fb;
+  height: 2.2rem;
+  border: none;
+  margin: 0.5rem;
+  width: 20rem;
+  border-radius: 5px;
+  padding-left: 15px;
+}
+
+.search-input:focus-visible {
+  outline: none;
+}
+
+.search-input:focus {
+  background-color: white;
+}

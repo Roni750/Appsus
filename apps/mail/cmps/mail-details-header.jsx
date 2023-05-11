@@ -4,9 +4,12 @@ export function MailDetailsHeader({ mail, onRemoveMail }) {
   return (
     <section className="mail-details-header">
       <Link to={`/mail`}>
-        <span class="symbols-pointer">arrow_back</span>
+        <span class="material-symbols-outlined">arrow_back</span>
       </Link>
-      <span className="symbols-pointer" onClick={() => onRemoveMail(mail.id)}>
+      <span
+        className="material-symbols-outlined"
+        onClick={() => onRemoveMail(mail.id)}
+      >
         delete
       </span>
     </section>

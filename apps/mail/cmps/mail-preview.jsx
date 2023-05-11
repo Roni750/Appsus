@@ -1,7 +1,7 @@
 const { Fragment, useState } = React
 const { Link } = ReactRouterDOM
 
-import { utilService } from '../../../services/util.service'
+import { utilService } from '../../../services/util.service.js'
 import { mailService } from '../services/mail.service.js'
 
 export function MailPreview({
@@ -45,8 +45,8 @@ export function MailPreview({
             onClick={onSetStared}
             className={
               mail.isStared
-                ? 'symbols-pointer icon stared'
-                : 'symbols-pointer icon'
+                ? 'material-symbols-outlined icon stared'
+                : 'material-symbols-outlined icon'
             }
           >
             star
@@ -66,13 +66,13 @@ export function MailPreview({
         <td className="mail-actions">
           <span
             onClick={(ev) => onRemoveMail(ev)}
-            className="symbols-pointer icon"
+            className="material-symbols-outlined icon"
           >
             delete
           </span>
           <span
             onClick={(ev) => onToggleRead(ev)}
-            className="symbols-pointer icon"
+            className="material-symbols-outlined icon"
           >
             {mail.isRead ? 'mail' : 'drafts'}
           </span>
@@ -82,7 +82,9 @@ export function MailPreview({
         <td colSpan="3" className="mail-hidden-container">
           <h2>{mail.subject}</h2>
           <Link onClick={onEnterMail} to={`/mail/${mail.id}`}>
-            <span className="symbols-pointer fullscreen">fullscreen</span>
+            <span className="material-symbols-outlined fullscreen">
+              fullscreen
+            </span>
           </Link>
           <div className="flex space-between">
             <h5>

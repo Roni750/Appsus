@@ -1,6 +1,6 @@
 const { useState } = React
 
-import { mailService } from '../services/mail.service'
+import { mailService } from '../services/mail.service.js'
 
 export function MailCompose({ addMail, onToggleCompose, saveDraft }) {
   const [draftMail, setDraftMail] = useState(mailService.getEmptyMailtoDraft())
