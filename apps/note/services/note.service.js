@@ -87,7 +87,40 @@ function _createNotes() {
                         { txt: 'Coding power', doneAt: 187111111 }
                     ]
                 }
-            }
+            },
+            {
+                id: 'n104',
+                type: 'NoteTxt',
+                isPinned: false,
+                info: {
+                    title: 'github pages sucks',
+                    txt: 'sry mate I really do think so'
+                }
+            },
+            {
+                id: 'n105',
+                type: 'NoteTxt',
+                isPinned: true,
+                style: {
+                    backgroundColor: '#00d'
+                },
+                info: {
+                    title: 'titlish title biatch',
+                    txt: 'What are you looking at dumbface? gtfo'
+                }
+            },
+            {
+                id: 'n106',
+                type: 'NoteImg',
+                isPinned: false,
+                info: {
+                    url: 'https://i.pinimg.com/originals/16/91/ef/1691ef71010b916a01cad9538245a3e6.jpg',
+                    title: 'Looking for troubles?'
+                },
+                style: {
+                    backgroundColor: '#00d'
+                }
+            },
         ]
     }
     storageService.saveToStorage(DB_KEY, notes)

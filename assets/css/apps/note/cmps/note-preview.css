@@ -1,5 +1,13 @@
 .note-preview {
     background-color: lightgoldenrodyellow;
+    border: solid 1px #e0e0e0;
+    border-radius: 10px;
+    margin-block-start: 1em;
+    width: 200px;
+    font-family: arial;
+    margin: 0 auto;
+    padding: 1em;
+    font-family: "Google Sans",Roboto,Arial,sans-serif;
 }
 
 .todo-done {

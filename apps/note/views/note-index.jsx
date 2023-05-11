@@ -1,4 +1,5 @@
-const { useEffect, useState } = React
+const { useEffect, useState, useRef } = React
+const { Outlet, NavLink, useNavigate } = ReactRouterDOM
 
 import { noteService } from "../services/note.service.js"
 import { NoteList } from "../cmps/note-list.jsx"
@@ -9,9 +10,19 @@ export function NoteIndex() {
     const [selectedNote, setSelectedNote] = useState(null);
     const [notes, setNotes] = useState([])
     const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter())
+    const navigate = useNavigate()
+
+    let menuRef = useRef()
 
     useEffect(() => {
         loadNotes()
+
+        let handler = (e) => {
+            if (e.target) {
+                setSelectedNote(false)
+            }
+        }
+        document.addEventListener("mousedown", handler)
     }, [])
 
     function loadNotes() {
@@ -19,6 +30,8 @@ export function NoteIndex() {
     }
 
     function saveNote(noteToAdd) {
+        console.log("noteToAdd:", noteToAdd)
+        if (!noteToAdd.info.title && !noteToAdd.info.txt) return
         noteService.addNote(noteToAdd)
             .then(newNote => setNotes([...notes, newNote]));
     }
@@ -31,7 +44,6 @@ export function NoteIndex() {
     }
 
     function onSelectNote(note) {
-        // debugger
         console.log("note:", note)
         setSelectedNote(note)
         console.log("selectedNote:", selectedNote)
@@ -48,8 +60,11 @@ export function NoteIndex() {
             <NoteAdd saveNote={saveNote} setNotes={setNotes} />
             <NoteList notes={notes} onSelectNote={onSelectNote} onRemoveNote={onRemoveNote} />
             {selectedNote && (
-                <NoteDetails note={selectedNote}/>
+                <div className="div-for-testing">
+                    <NoteDetails note={selectedNote} />
+                </div>
             )}
+            <Outlet />
         </section>
     )
 }
