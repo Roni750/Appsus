@@ -1,0 +1,42 @@
+.mail-header {
+  background-color: white;
+  padding: 0.4rem;
+  padding-left: 1rem;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  text-align: left;
+}
+
+.table-header-btn-container {
+  align-items: center;
+  gap: 10px;
+}
+
+.read-filter {
+  font-size: 2rem;
+}
+
+.read-filter-modal {
+  position: absolute;
+  z-index: 1;
+  background-color: white;
+  padding: 2rem 0;
+  font-size: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.14) 0px 8px 10px 1px,
+    rgba(0, 0, 0, 0.12) 0px 3px 14px 2px, rgba(0, 0, 0, 0.2) 0px 5px 5px -3px;
+  font-weight: 400;
+  border-radius: 5px;
+}
+
+.read-filter-option {
+  cursor: pointer;
+  padding: 0.3rem 2rem;
+}
+
+.read-filter-option:hover {
+  background-color: rgb(229, 229, 229);
+}
+
+.refresh {
+  font-size: 1.6rem;
+}

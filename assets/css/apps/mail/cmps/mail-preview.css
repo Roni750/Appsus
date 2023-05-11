@@ -1,0 +1,100 @@
+.mail-preview {
+  display: grid;
+  grid-template-columns: 170px 1fr 50px;
+  padding: 0.6rem;
+  /* font-weight: 700; */
+  box-shadow: inset 0 -1px 0 0 rgb(100 121 143 / 12%);
+  cursor: pointer;
+}
+
+.mail-preview td:first-child {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.mail-subject.read,
+.mail-sender.read,
+.mail-date.read {
+  font-weight: 700;
+}
+
+.mail-date {
+  text-align: end;
+}
+
+.mail-preview:hover .mail-date {
+  display: none;
+}
+
+.mail-actions {
+  display: none;
+}
+
+.mail-preview:hover .mail-actions {
+  display: flex;
+  justify-content: end;
+  gap: 10px;
+}
+
+.mail-hidden-container {
+  background-color: white;
+  margin: 0;
+  padding: 0.5rem 1rem;
+  position: relative;
+}
+
+.fullscreen {
+  position: absolute;
+  cursor: pointer;
+  top: 0px;
+  right: 2rem;
+  background-color: rgb(240, 240, 240);
+  border-radius: 50%;
+  padding: 2px;
+}
+
+.fullscreen:hover {
+  background-color: rgb(228, 228, 228);
+}
+
+.mail-sender {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+  line-height: 1.2rem;
+}
+
+.mail-preview.read {
+  background-color: rgb(255, 255, 255);
+  font-weight: 400;
+}
+
+.mail-preview:hover {
+  box-shadow: inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0,
+    0 1px 2px 0 rgb(60 64 67 / 30%), 0 1px 3px 1px rgb(60 64 67 / 15%);
+}
+
+.mail-preview-body {
+  color: rgb(130, 130, 130);
+  font-weight: 400;
+}
+
+.mail-content {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+  line-height: 1.2rem;
+  padding-left: 1rem;
+}
+
+.stared {
+  color: rgb(255, 162, 0);
+  font-weight: 800;
+}

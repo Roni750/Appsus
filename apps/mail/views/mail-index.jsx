@@ -1,5 +1,97 @@
+const { useState, useEffect } = React
+
+import { MailFilter } from '../cmps/mail-filter.jsx'
+import { MailFolderList } from '../cmps/mail-side-list.jsx'
+import { MailList } from '../cmps/mail-list.jsx'
+import { MailCompose } from '../cmps/mail-compose.jsx'
+import { MailDraggableCompose } from '../cmps/mail-draggable-compose.jsx'
+import { mailService } from '../services/mail.service.js'
 
 export function MailIndex() {
-    return <div>mail app</div>
-}
+  const [mails, setMails] = useState([])
+  const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter())
+  const [isComposeClicked, setIsComposeClicked] = useState(false)
 
+  useEffect(() => {
+    loadMails()
+  }, [filterBy, mails])
+
+  function loadMails() {
+    mailService.query(filterBy).then((mails) => {
+      setMails(mails)
+    })
+  }
+
+  function onSetFilter(filterByUser) {
+    setFilterBy(filterByUser)
+  }
+
+  function addMail(newMail) {
+    mailService.save(newMail).then((mail) => {
+      mails.unshift(mail)
+      setMails(mails)
+    })
+  }
+
+  function onToggleCompose() {
+    setIsComposeClicked(!isComposeClicked)
+  }
+
+  function setStared(mail) {
+    mail.isStared = !mail.isStared
+    mailService.save(mail)
+  }
+
+  function removeMail(mail) {
+    if (mail.status === 'trash') {
+      mailService.remove(mail.id).catch((err) => {
+        console.log('Had issues removing the mail', err)
+      })
+    } else {
+      mail.status = 'trash'
+      mailService.save(mail)
+    }
+  }
+
+  function setReadMail(mail) {
+    mail.isRead = false
+    mailService.save(mail)
+  }
+
+  function setToggleRead(mail) {
+    mail.isRead = !mail.isRead
+    mailService.save(mail)
+  }
+
+  function saveDraft(mail) {
+    mailService.save(mail)
+  }
+
+  return (
+    <main className="mail-index-container">
+      <MailFilter onSetFilter={onSetFilter} />
+      <section className="mail-container">
+        <MailFolderList
+          mails={mails}
+          onSetFilter={onSetFilter}
+          onToggleCompose={onToggleCompose}
+        />
+        <MailList
+          mails={mails}
+          setStared={setStared}
+          removeMail={removeMail}
+          onSetFilter={onSetFilter}
+          setReadMail={setReadMail}
+          setToggleRead={setToggleRead}
+        />
+        {isComposeClicked && (
+          <MailDraggableCompose
+            addMail={addMail}
+            onToggleCompose={onToggleCompose}
+            saveDraft={saveDraft}
+          />
+        )}
+      </section>
+    </main>
+  )
+}

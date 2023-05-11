@@ -9,22 +9,35 @@
 @import './basics/helpers.css';
 /* @import './basics/layout.css'; */
 
-/* Views */
+/* General Views */
 @import './views/home.css';
 
+/* Apps Views */
+
 /* @import './apps/note/views/note-index.css'; */
+@import './apps/mail/views/mail-index.css';
+@import './apps/mail/views/mail-details.css';
 
-/* @import './apps/mail/views/mail-index.css'; */
-
-/* Cmps */
+/* General Cmps */
 
 @import './cmps/user-msg.css';
 @import './cmps/app-header.css';
 @import './cmps/home-page.css';
 @import './cmps/apps-card.css';
+
+/* Note App Cmps */
+
 @import 'apps/note/cmps/note-list.css';
 @import 'apps/note/cmps/note-preview.css';
 @import 'apps/note/cmps/add-note.css';
 @import 'apps/note/cmps/note-details.css';
 
-/* @import './apps/mail/cmps/mail-list.css'; */
+/* Mail App Cmps */
+
+@import './apps/mail/cmps/mail-list.css';
+@import './apps/mail/cmps/mail-side-list.css';
+@import './apps/mail/cmps/mail-details-header.css';
+@import './apps/mail/cmps/mail-header.css';
+@import './apps/mail/cmps/mail-filter.css';
+@import './apps/mail/cmps/mail-preview.css';
+@import './apps/mail/cmps/mail-compose.css';
