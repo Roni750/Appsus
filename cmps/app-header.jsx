@@ -7,10 +7,8 @@ export function AppHeader() {
   const [isClicked, setIsClicked] = useState(false)
 
   useEffect(() => {
-    ;<MenuModal />
+    <MenuModal />
   }, [isClicked])
-
-  console.log('isClicked:', isClicked)
 
   return (
     <header>

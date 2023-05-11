@@ -1,0 +1,27 @@
+.input-wrapper {
+    margin: 0 auto;
+    width: 50%;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.icon-wrapper {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    right: 0;
+}
+
+.icon {
+    padding: .7em;
+    /* min-width: 40px; */
+    /* margin-right: 10px; */
+    z-index: 1;
+}
+
+.input-field {
+    position: relative;
+    width: 100%;
+    padding: 10px 10px 10px 1em;
+    border-radius: .8em;
+}

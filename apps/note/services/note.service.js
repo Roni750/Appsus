@@ -37,7 +37,6 @@ function remove(noteId) {
 }
 
 function save(note) {
-    console.log("note from service _Save", note)
     if (note.id) {
         return storageService.put(DB_KEY, note)
     } else {
@@ -46,7 +45,7 @@ function save(note) {
 }
 
 function addNote(note) {
-    save(note)
+    return Promise.resolve(save(note))
 }
 
 function _createNotes() {

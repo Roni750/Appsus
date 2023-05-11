@@ -2,12 +2,11 @@ const { useState } = React
 
 import { noteService } from "../services/note.service.js"
 
-export function NoteAdd() {
+export function NoteAdd({ setNotes, saveNote }) {
     const [noteToAdd, setNoteToAdd] = useState(noteService.getEmptyNote())
 
     function handleChange({ target }) {
-
-        const field = target.name
+        // const field = target.name
         const value = target.value
 
         if (value.includes(',')) {
@@ -36,21 +35,30 @@ export function NoteAdd() {
                 }
             }))
         }
-
-
     }
 
     function onSaveNote(ev) {
         ev.preventDefault()
+        saveNote(noteToAdd)
         console.log("note:", noteToAdd)
-        noteService.addNote(noteToAdd)
     }
 
     return (
-        <form onSubmit={onSaveNote} >
-            <label htmlFor="txt">Add a note:</label>
-            <input onChange={handleChange} type="text" name="txt" id="txt" />
-            <button>Add</button>
+        <form onSubmit={onSaveNote}>
+            <div className="input-wrapper">
+                <label htmlFor="txt">Add a note:</label>
+                <div className="input-container">
+                    <div className="icon-wrapper">
+                        <i className="fa-solid fa-font icon"></i>
+                        <i className="fa-solid fa-image icon"></i>
+                        <i className="fa-brands fa-youtube icon"></i>
+                        <i className="fa-solid fa-microphone icon"></i>
+                        <i className="fa-solid fa-list-ul icon"></i>
+                    </div>
+                    <input className="input-field" onChange={handleChange} type="text" name="txt" id="txt" />
+                </div>
+                <button className="add-btn">Add</button>
+            </div>
         </form>
     )
 }

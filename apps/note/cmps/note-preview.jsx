@@ -1,11 +1,13 @@
 const { useState } = React
 
-export function NotePreview({ note }) {
+export function NotePreview({ note, onEditNote }) {
+
+  const [isDone, setIsDone] = useState(false)
 
   function DynamicCmp({ dynamicNote }) {
     switch (dynamicNote.type) {
       case "NoteTxt":
-        return <TxtNote info={dynamicNote.info} />
+        return <TxtNote info={dynamicNote.info} note={dynamicNote} onEditNote={onEditNote} />
       case "NoteImg":
         return <NoteImg info={dynamicNote.info} />
       case "NoteTodos":
@@ -13,14 +15,24 @@ export function NotePreview({ note }) {
     }
   }
 
-  function TxtNote({ info }) {
+  function TxtNote({ info, note, onEditNote }) {
+    const [content, setContent] = React.useState(info.txt)
+
+    const handleContentBlur = (event) => {
+      const newContent = event.currentTarget.innerHTML
+      setContent(newContent)
+      console.log("newContent:", newContent)
+      onEditNote(newContent, note.id)
+    }
+
     return (
       <article className="note-preview">
         <h1>Note Content:</h1>
-        <p>{info.txt}</p>
+        <div onBlur={handleContentBlur} contentEditable={true} dangerouslySetInnerHTML={{ __html: content }}></div>
       </article>
     )
   }
+
 
   function NoteImg({ info }) {
     return (
@@ -32,12 +44,9 @@ export function NotePreview({ note }) {
   }
 
   function NoteTodos({ info }) {
-    const [todosDoneState, setTodosDoneState] = useState(info.todos.map(() => false))
-
-    function toggleDoUndo(idx) {
-      const newTodosDoneState = [...todosDoneState]
-      newTodosDoneState[idx] = !newTodosDoneState[idx]
-      setTodosDoneState(newTodosDoneState)
+    function toggleDoUndo(isDone) {
+      setIsDone(!isDone)
+      console.log("isDone:", isDone)
     }
 
     return (
@@ -45,9 +54,12 @@ export function NotePreview({ note }) {
         <h1>Welcome back</h1>
         <ul>
           {info.todos.map((todo, idx) => (
-            <li key={idx} onClick={() => toggleDoUndo(todosDoneState)} className={todosDoneState ? 'todo-done' : ''}>{todo.txt}</li>
+            <li key={idx}><p>{todo.txt}</p></li>
           ))}
         </ul>
+        {/* {info.todos.map((todo, idx) => (
+          <li key={idx} onClick={() => toggleDoUndo(isDone)} className={isDone ? 'todo-done' : ''}><p contenteditable="true">{todo.txt}</p></li>
+        ))} */}
       </article>
     )
   }
