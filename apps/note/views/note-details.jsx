@@ -1,10 +1,11 @@
 const { useEffect, useState, Fragment } = React
-const { useParams, useNavigate} = ReactRouterDOM
+const { useParams, useNavigate } = ReactRouterDOM
 
 import { noteService } from "../services/note.service.js"
 import { NotePreview } from "../cmps/note-preview.jsx"
 
-export function NoteDetails({ selectedNote }) {
+export function NoteDetails({ selectedNote, onEditNote, onRemoveNote }) {
+    // * This component is all about the modal -> note display
     const [note, setNote] = useState(null)
     const [isFocused, setIsFocused] = useState(false)
     const params = useParams()
@@ -38,14 +39,14 @@ export function NoteDetails({ selectedNote }) {
 
 
     if (selectedNote === null) navigate('/note')
-    if (!note) return <div><p>Loading...</p></div>
+    if (!note) return
 
     return (
         <Fragment>
             {isFocused ? <div className="dimmer" onClick={unfocusNote}></div> : ''}
-            <section className="note-details">
-                <h1>Note ID: {note.id}</h1>
-                <NotePreview note={note} />
+            <section className="note-details bglightgray round-corners">
+                {console.log("typeof onEditNote from note-details:", typeof onEditNote)}
+                    <NotePreview isFocused={isFocused} onEditNote={onEditNote} note={note} onRemoveNote={onRemoveNote} />
             </section>
         </Fragment>
     )

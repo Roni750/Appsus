@@ -29,3 +29,15 @@
 .grid {
     display: grid;
 }
+
+.bglightgray {
+    background-color: rgb(255, 255, 255);
+}
+
+.round-corners {
+    border-radius: 1em;
+}
+
+.disable-corners {
+    border: none;
+}

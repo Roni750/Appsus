@@ -1,32 +1,23 @@
-const { Link } = ReactRouterDOM
-const {  useNavigate } = ReactRouterDOM
-
+import { Toolbar } from "./toolbar.jsx"
 import { NotePreview } from "./note-preview.jsx"
-import { noteService } from "../services/note.service.js"
 
-export function NoteList({ notes, onRemoveNote, onSelectNote }) {
-
-    function onEditNote(newContent, noteId) {
-        const note = noteService.get(noteId)
-            .then(editedNote => {
-                editedNote.info.txt = newContent
-                noteService.save(editedNote)
-            })
-        console.log("note:", note)
-    }
-
+export function NoteList({ notes, onRemoveNote, onNoteDuplicate, onEditNote }) {
     return (
         <ul className="note-list">
-            {console.log("notes:", notes)}
-            {notes.map(note =>
-                <li key={note.id} onClick={() => onSelectNote(note)}>
-                {/* <li key={note.id} onBlur={() => onSelectNote(null)} onClick={() => onSelectNote(note)}> */}
-                    <Link to={`/note/${note.id}`}>
-                        <NotePreview onEditNote={onEditNote} note={note} onRemoveNote={onRemoveNote} />
-                    </Link>
-                    {/* <button className="remove-btn" onClick={() => onRemoveNote(note.id)}>X</button> */}
+            {notes.map(note => (
+                <li key={note.id}>
+                    <div className="note-card">
+                        <NotePreview
+                            note={note}
+                            onEditNote={onEditNote}
+                            onRemoveNote={onRemoveNote}
+                            onNoteDuplicate={onNoteDuplicate}
+                        />
+                        <Toolbar note={note} onRemoveNote={onRemoveNote} onNoteDuplicate={onNoteDuplicate} />
+                    </div>
                 </li>
-            )}
-        </ul>
+            ))
+            }
+        </ul >
     )
 }

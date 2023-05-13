@@ -1,5 +1,3 @@
-// note service
-import { utilService } from '../../../services/util.service.js'
 import { storageService } from '../../../services/async-storage.service.js'
 
 const DB_KEY = 'notesDB'
@@ -14,6 +12,7 @@ export const noteService = {
     getEmptyNote,
     addNote,
     getEmptyTodo,
+    duplicateNote,
 }
 
 function query({ filterBy = {} }) {
@@ -33,7 +32,7 @@ function get(noteId) {
 }
 
 function remove(noteId) {
-    return storageService.remove(DB_KEY, noteId)
+    return Promise.resolve(storageService.remove(DB_KEY, noteId))
 }
 
 function save(note) {
@@ -42,6 +41,11 @@ function save(note) {
     } else {
         return storageService.post(DB_KEY, note)
     }
+}
+
+function duplicateNote(note) {
+    note.id = null
+    return storageService.post(DB_KEY, note)
 }
 
 function addNote(note) {
@@ -61,35 +65,12 @@ function _createNotes() {
                     backgroundColor: '#00d'
                 },
                 info: {
-                    txt: 'Fullstack Me Baby!'
+                    title: 'Future me:',
+                    txt: 'Check out this awesome Sablé cookies recipe: https://foodiesrecipes.com/עוגיות-סבלה-שוקולד/'
                 }
             },
             {
                 id: 'n102',
-                type: 'NoteImg',
-                isPinned: false,
-                info: {
-                    url: 'https://www.limestone.edu/sites/default/files/styles/news_preview_image/public/2022-03/computer-programmer.jpg?h=2d4b268f&itok=JOcIEe9u',
-                    title: 'Bobi and Me'
-                },
-                style: {
-                    backgroundColor: '#00d'
-                }
-            },
-            {
-                id: 'n103',
-                type: 'NoteTodos',
-                isPinned: false,
-                info: {
-                    title: 'Get my stuff together',
-                    todos: [
-                        { txt: 'Driving license', doneAt: null },
-                        { txt: 'Coding power', doneAt: 187111111 }
-                    ]
-                }
-            },
-            {
-                id: 'n104',
                 type: 'NoteTxt',
                 isPinned: false,
                 info: {
@@ -98,29 +79,69 @@ function _createNotes() {
                 }
             },
             {
-                id: 'n105',
+                id: 'n103',
                 type: 'NoteTxt',
                 isPinned: true,
                 style: {
                     backgroundColor: '#00d'
                 },
                 info: {
-                    title: 'titlish title biatch',
-                    txt: 'What are you looking at dumbface? gtfo'
+                    title: 'Todo:',
+                    txt: 'Get your shit together when the bootcamp ends. So many errands are being postponed..'
+                }
+            },
+            {
+                id: 'n104',
+                type: 'NoteTxt',
+                isPinned: false,
+                info: {
+                    title: '10 Cool Javascript Hacks',
+                    txt: 'Check out these amazing Javascript tips and tricks!'
+                }
+            },
+            {
+                id: 'n105',
+                type: 'NoteTxt',
+                isPinned: true,
+                style: {
+                    backgroundColor: '#ff9800'
+                },
+                info: {
+                    title: 'To future me:',
+                    txt: 'Check out this awesome React tutorial https://www.youtube.com/watch?v=F627pKNUCVQ'
                 }
             },
             {
                 id: 'n106',
-                type: 'NoteImg',
+                type: 'NoteTxt',
                 isPinned: false,
                 info: {
-                    url: 'https://i.pinimg.com/originals/16/91/ef/1691ef71010b916a01cad9538245a3e6.jpg',
-                    title: 'Looking for troubles?'
-                },
-                style: {
-                    backgroundColor: '#00d'
+                    title: 'React vs Angular',
+                    txt: 'Which frontend framework is better - React or Angular? Let\'s compare!'
                 }
             },
+            {
+                id: 'n107',
+                type: 'NoteTxt',
+                isPinned: true,
+                style: {
+                    backgroundColor: '#8bc34a'
+                },
+                info: {
+                    title: 'The Art of Gardening',
+                    txt: 'Discover the therapeutic benefits of gardening!'
+                }
+            },
+            {
+                id: 'n108',
+                type: 'NoteTxt',
+                isPinned: false,
+                info: {
+                    title: 'Best Vegan Restaurants',
+                    txt: 'Looking for some delicious vegan food? Check out these top-rated vegan restaurants!'
+                }
+            }
+            
         ]
     }
     storageService.saveToStorage(DB_KEY, notes)

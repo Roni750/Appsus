@@ -1,69 +1,46 @@
-import { Toolbar } from "./toolbar.jsx"
+const { useState } = React
 
-export function NotePreview({ note, onEditNote, onRemoveNote }) {
+export function NotePreview({ note, onRemoveNote, onNoteDuplicate, onEditNote, isFocused }) {
 
-  function DynamicCmp({ dynamicNote }) {
-    switch (dynamicNote.type) {
-      case "NoteTxt":
-        return <TxtNote info={dynamicNote.info} note={dynamicNote} onEditNote={onEditNote} />
-      case "NoteImg":
-        return <NoteImg info={dynamicNote.info} />
-      case "NoteTodos":
-        return <NoteTodos info={dynamicNote.info} />
+  function TxtNote({ info, note, onEditNote, isFocused }) {
+    const [content, setContent] = useState(info.txt)
+
+    const handleContentChange = (event) => {
+      setContent(event.target.value)
+      console.log("content:", content)
     }
-  }
 
-  function TxtNote({ info, note, onEditNote }) {
-    const [content, setContent] = React.useState(info.txt)
-
-    const handleContentBlur = (event) => {
-      const newContent = event.currentTarget.innerHTML
-      setContent(newContent)
-      console.log("newContent:", newContent)
-      onEditNote(newContent, note.id)
+    const handleContentBlur = () => {
+      if (onEditNote) {
+        console.log("content from handleBlur func:", content)
+        onEditNote(content, note.id)
+      }
     }
 
     return (
-      <article className="note-preview">
-        <h4>{info.title}</h4>
-        <div onBlur={handleContentBlur} contentEditable={true} dangerouslySetInnerHTML={{ __html: content }}>
-        </div>
-        {/* <button className="remove-btn" onClick={() => onRemoveNote(note.id)}>X</button> */}
-        <Toolbar note={note} />
-      </article>
-    )
-  }
 
-
-  function NoteImg({ info }) {
-    return (
-      <article className="note-preview">
-        <h1>{info.title}</h1>
-        <img src={info.url} />
-        {/* <button className="remove-btn" onClick={() => onRemoveNote(note.id)}>X</button> */}
-        <Toolbar note={note} />
-
-      </article>
-    )
-  }
-
-  function NoteTodos({ info }) {
-
-    return (
-      <article className="note-preview">
-        <h1>Todo's list:</h1>
-        <ul>
-          {info.todos.map((todo, idx) => (
-            <li key={idx}><p>{todo.txt}</p></li>
-          ))}
-        </ul>
-        {/* <button className="remove-btn" onClick={() => onRemoveNote(note.id)}>X</button> */}
-        <Toolbar note={note} />
+      <article className={isFocused ? "note-preview-borderless" : "note-preview"}>
+        {info.title && <textarea value={info.title} style={{ fontWeight: 'bold', fontSize: "14px" }} onChange={handleContentChange} onBlur={handleContentBlur}></textarea>}
+        {content.length > 40 ? (
+          <textarea
+            value={content}
+            rows="5"
+            onChange={handleContentChange}
+            onBlur={handleContentBlur}
+          ></textarea>
+        ) : (
+          <textarea
+            value={content}
+            rows="2"
+            onChange={handleContentChange}
+            onBlur={handleContentBlur}
+          ></textarea>
+        )}
       </article>
     )
   }
 
   return (
-    <DynamicCmp dynamicNote={note} />
+    <TxtNote info={note.info} note={note} isFocused={isFocused} onEditNote={onEditNote} onRemoveNote={onRemoveNote} onNoteDuplicate={onNoteDuplicate} />
   )
 }

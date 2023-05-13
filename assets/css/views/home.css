@@ -1,1 +1,19 @@
- /* home */
+.teaser-container {
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.title {
+    margin-block: 2em;
+    font-family: 'bigJohn';
+}
+
+.teaser {
+    width: 50%;
+    height: 50%;
+}
+
+.teaser.email {
+    width: 40%;
+}

@@ -32,10 +32,6 @@ input {
   all: unset;
 }
 
-.inputs-container {
-  margin: 0 auto;
-}
-
 .input-wrapper {
   margin-block-start: 2em;
   margin-bottom: 10px;
@@ -44,7 +40,6 @@ input {
 
 .input-field {
   position: relative;
-  width: 100%;
   padding: 10px 10px 10px 1em;
   border: 0px;
 }
@@ -55,30 +50,32 @@ input {
 
 .inputs-container {
   border-radius: .8em;
-  border: 2px solid lightgray;
-}
-
-.input-field:focus+.icon-wrapper {
-  opacity: 1;
-  visibility: visible;
+  border: 1px solid lightgray;
+  font-family: Tahoma;
+  margin: 0 auto;
 }
 
 .inputs-container {
-  width: 37.5rem;
+  width: 50%;
 }
 
-/* .icon-wrapper {
-  position: absolute;
+.icon-wrapper {
   display: flex;
   align-items: center;
-  right: 0;
-  bottom: 50%;
-  transform: translateY(50%);
-  opacity: 0;
-  visibility: hidden;
+  justify-content: center;
 }
 
-.icon {
-  padding: .7em;
-  z-index: 1;
-} */
+textarea {
+  background-color: inherit;
+  border: none;
+  resize: none;
+  outline: none;
+}
+
+#txt.input-field {
+  width: 92%;
+}
+
+#title.input-field {
+  width: 92%;
+}

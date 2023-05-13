@@ -10,36 +10,53 @@ export function NoteIndex() {
     const [selectedNote, setSelectedNote] = useState(null);
     const [notes, setNotes] = useState([])
     const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter())
-    const navigate = useNavigate()
-
-    let menuRef = useRef()
 
     useEffect(() => {
         loadNotes()
 
-        let handler = (e) => {
+        const handler = (e) => {
             if (e.target) {
                 setSelectedNote(false)
             }
         }
         document.addEventListener("mousedown", handler)
-    }, [])
+    }, [filterBy])
 
     function loadNotes() {
         noteService.query(filterBy).then(notes => setNotes(notes))
     }
 
+    function onEditNote(newContent, noteId) {
+        console.log("func called:")
+        noteService.get(noteId)
+            .then(editedNote => {
+                editedNote.info.txt = newContent
+                noteService.save(editedNote)
+            })
+    }
+
     function saveNote(noteToAdd) {
-        console.log("noteToAdd:", noteToAdd)
+        // * Disable creation of empty notes
         if (!noteToAdd.info.title && !noteToAdd.info.txt) return
         noteService.addNote(noteToAdd)
             .then(newNote => setNotes([...notes, newNote]));
     }
 
     function onRemoveNote(noteId) {
+        console.log("remove function called:")
         noteService.remove(noteId).then(() => {
             const updatedNotes = notes.filter(note => note.id !== noteId)
             setNotes(updatedNotes)
+        })
+    }
+
+    function onNoteDuplicate(noteId) {
+        console.log("note duplication func called:", noteId)
+        noteService.get(noteId).then(note => {
+            noteService.duplicateNote(note).then(newNote => {
+                setNotes(prevNotes => [...prevNotes, newNote]);
+                setSelectedNote(newNote);
+            })
         })
     }
 
@@ -53,16 +70,13 @@ export function NoteIndex() {
         setFilterBy(prevFilterBy => ({ ...prevFilterBy, ...filterBy }))
     }
 
-
     console.log("render")
     return (
         <section className="notes-index">
             <NoteAdd saveNote={saveNote} setNotes={setNotes} />
-            <NoteList notes={notes} onSelectNote={onSelectNote} onRemoveNote={onRemoveNote} />
+            <NoteList notes={notes} onEditNote={onEditNote} onSelectNote={onSelectNote} onNoteDuplicate={onNoteDuplicate} onRemoveNote={onRemoveNote} />
             {selectedNote && (
-                <div className="div-for-testing">
-                    <NoteDetails note={selectedNote} />
-                </div>
+                <NoteDetails onRemoveNote={onRemoveNote} onEditNote={onEditNote} note={selectedNote} />
             )}
             <Outlet />
         </section>
