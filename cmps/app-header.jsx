@@ -1,4 +1,4 @@
-const { useState, useEffect } = React
+const { useState } = React
 const { Link, NavLink } = ReactRouterDOM
 
 import { MenuModal } from './menu-modal.jsx'

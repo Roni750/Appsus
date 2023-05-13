@@ -9,6 +9,7 @@ import { MailDetails } from './apps/mail/views/mail-details.jsx'
 import { NoteIndex } from './apps/note/views/note-index.jsx'
 import { NoteDetails } from './apps/note/views/note-details.jsx'
 import { UserMsg } from './cmps/user-msg.jsx'
+import { AppFooter } from './cmps/app-footer.jsx'
 
 export function App() {
   return (
@@ -26,6 +27,9 @@ export function App() {
         </Routes>
         <UserMsg />
       </section>
+      <footer>
+        <AppFooter />
+      </footer>
     </Router>
   )
 }

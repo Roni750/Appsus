@@ -2,7 +2,6 @@ const { Fragment, useState } = React
 const { Link } = ReactRouterDOM
 
 import { utilService } from '../../../services/util.service.js'
-import { mailService } from '../services/mail.service.js'
 
 export function MailPreview({
   mail,

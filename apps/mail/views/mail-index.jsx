@@ -3,7 +3,6 @@ const { useState, useEffect } = React
 import { MailFilter } from '../cmps/mail-filter.jsx'
 import { MailSideList } from '../cmps/mail-side-list.jsx'
 import { MailList } from '../cmps/mail-list.jsx'
-import { MailCompose } from '../cmps/mail-compose.jsx'
 import { MailDraggableCompose } from '../cmps/mail-draggable-compose.jsx'
 import { mailService } from '../services/mail.service.js'
 import { showSuccessMsg } from '../../../services/event-bus.service.js'
