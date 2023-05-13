@@ -4,16 +4,35 @@
     text-align: center;
 }
 
-.title {
+.line-title {
     margin-block: 2em;
     font-family: 'bigJohn';
+    letter-spacing: .15em;
+    color: #FFF;
+    text-shadow: 2px 2px 0px #b58fac, 5px 4px 0px rgba(0, 0, 0, 0.15);
 }
 
-.teaser {
-    width: 50%;
-    height: 50%;
+.img-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 5em;
+}
+
+.note-teaser {
+    width: 45%;
+    /* height: 40%; */
 }
 
 .teaser.email {
     width: 40%;
+}
+
+.home h2 {
+    font-size: 3rem;
+}
+
+.home p {
+    font-size: 1.2rem;
 }

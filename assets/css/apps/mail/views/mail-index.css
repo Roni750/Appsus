@@ -1,4 +1,7 @@
 body {
+  background-image: url('../../../../img/background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .mail-index-container {
@@ -6,9 +9,11 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
+  flex: 0 0 auto;
   flex-direction: column;
   background-color: #f2f6fc;
-  height: 90%;
+  height: 100%;
+  width: 100%;
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -19,20 +24,11 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 0;
 }
 
-/* Track */
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #c6e0ff;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #acd0ff;
+@media (max-width: 560px) {
+  .mail-container {
+    grid-template-columns: 130px 1fr;
+  }
 }

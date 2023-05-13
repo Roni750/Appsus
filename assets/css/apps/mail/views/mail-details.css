@@ -4,20 +4,21 @@
   background-color: #f2f7fd;
   justify-content: center;
   align-items: center;
-  font-family: roboto;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .mail-details-container {
-  background-color: white;
+  background-color: rgb(226, 217, 217);
   padding: 1rem 2rem;
   border-radius: 10px;
-  height: 90%;
-  width: 80%;
+  height: calc(100vh - 85px);
+  width: 60%;
 }
 
 .details-email,
 .details-date {
   color: rgb(170, 170, 170);
+  font-size: 0.8rem;
 }
 
 .mails-details-body {
