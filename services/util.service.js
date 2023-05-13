@@ -8,6 +8,7 @@ export const utilService = {
   getMonthName,
   getFormattedDate,
   getFormattedDay,
+  getCurrentTime,
 }
 
 function makeId(length = 6) {
@@ -139,4 +140,15 @@ function getFormattedDay(timestamp) {
   if (dd < 10) dd = '0' + dd
 
   return dd
+}
+
+function getCurrentTime() {
+  const currentDate = new Date(Date.now())
+  const timeString = currentDate.toLocaleTimeString('en-US', {
+    hour: 'numeric',
+    minute: 'numeric',
+  })
+  const [time, amPm] = timeString.split(' ')
+
+  return `${time} ${amPm}`
 }

@@ -1,72 +1,78 @@
 .main-header {
-    display: flex;
-    justify-content: space-between;
-    background-color: var(--gmail-header-bgclr);
-    position: relative;
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--gmail-header-bgclr);
+  position: relative;
 }
 
 nav {
-    align-self: center;
+  align-self: center;
 }
 
 .logo-container {
-    gap: 1em;
+  gap: 1em;
 }
 
 .horse-logo {
-    margin-inline-start: 1rem;
+  margin-inline-start: 1rem;
 }
 
 .brand-name {
-    font-family: 'quackey';
-    font-size: 2rem;
+  font-family: 'quackey';
+  font-size: 2rem;
 }
 
 .hamburger {
-    fill: #5f6368;
-    margin-inline-end: 1rem;
-    cursor: pointer;
-    padding: .3em;
+  fill: #5f6368;
+  margin-inline-end: 1rem;
+  cursor: pointer;
+  padding: 0.3em;
 }
 
 .apps-menu {
-    margin-block-start: 1em;
-    position: absolute;
-    display: grid;
-    right: 7rem;
-    margin-inline-end: 1em;
-    z-index: 1;
+  margin-block-start: 1em;
+  position: absolute;
+  display: grid;
+  right: 7rem;
+  margin-inline-end: 1em;
+  z-index: 1;
 }
 
 .apps-container {
-    display: grid;
-    justify-items: center;
-    grid-template-columns: 4.375rem 4.375rem;
-    grid-template-rows: 5rem 5rem;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.81);
-    border-radius: 5%;
-    background-color: var(--gmail-header-bgclr);
-    font-family: 'bigJohn';
+  display: grid;
+  justify-items: center;
+  grid-template-columns: 4.375rem 4.375rem;
+  grid-template-rows: 5rem 5rem;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.81);
+  border-radius: 5%;
+  background-color: var(--gmail-header-bgclr);
+  font-family: 'bigJohn';
 }
 
 .hamburger:hover {
-    background-color: #e7eaed;
-    border-radius: 50%;
+  background-color: #e7eaed;
+  border-radius: 50%;
 }
 
-.hamburger.active{
-    border-radius: 50%;
-    background-color: #dfe2e5;
+.hamburger.active {
+  border-radius: 50%;
+  background-color: #dfe2e5;
 }
 
-.apps-menu, .gmail-logo ,.keep-logo, .hamburger, .about-logo, .books-logo, .horse-logo {
-    width: 35px;
-    height: 35px;
+.apps-menu,
+.gmail-logo,
+.keep-logo,
+.hamburger,
+.about-logo,
+.books-logo,
+.horse-logo {
+  width: 35px;
+  height: 35px;
 }
 
 .horse-logo {
-    height: 85px;
+  height: 85px;
 }

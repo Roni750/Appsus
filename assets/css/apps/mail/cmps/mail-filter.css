@@ -1,20 +1,22 @@
 .mail-filter {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  justify-content: flex-start;
+  margin-left: 12.5rem;
 }
 
 .filter-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #eaf1fb;
+  background-color: #b4bbc5;
   width: min-content;
   margin: 0.5rem auto;
   padding: 0 0.5rem;
   border-radius: 10px;
-  position: relative;
-  right: 12.813rem;
+}
+
+.filter-container .material-symbols-outlined {
+  color: white;
 }
 
 .input-container {
@@ -22,11 +24,11 @@
 }
 
 .search-input {
-  background-color: #eaf1fb;
+  background-color: #b4bbc5;
   height: 2.2rem;
   border: none;
   margin: 0.5rem;
-  width: 35rem;
+  width: 30rem;
   border-radius: 5px;
   padding-left: 15px;
 }
@@ -35,6 +37,9 @@
   outline: none;
 }
 
-.search-input:focus {
-  background-color: white;
+::placeholder {
+  color: white;
 }
+/* .search-input:focus {
+  background-color: #eaf1fb;
+} */

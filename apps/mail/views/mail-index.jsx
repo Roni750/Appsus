@@ -6,6 +6,7 @@ import { MailList } from '../cmps/mail-list.jsx'
 import { MailCompose } from '../cmps/mail-compose.jsx'
 import { MailDraggableCompose } from '../cmps/mail-draggable-compose.jsx'
 import { mailService } from '../services/mail.service.js'
+import { showSuccessMsg } from '../../../services/event-bus.service.js'
 
 export function MailIndex() {
   const [mails, setMails] = useState([])
@@ -31,6 +32,7 @@ export function MailIndex() {
       mails.unshift(mail)
       setMails(mails)
     })
+    showSuccessMsg('Your mail Sent ')
   }
 
   function onToggleCompose() {
@@ -51,6 +53,7 @@ export function MailIndex() {
       mail.status = 'trash'
       mailService.save(mail)
     }
+    showSuccessMsg('your mail deleted')
   }
 
   function setReadMail(mail) {
